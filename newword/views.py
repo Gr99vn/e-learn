@@ -1,7 +1,7 @@
 from hashlib import new
 from django.contrib.auth import login
 from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Test, Lesson, NewWord, Quest
 import random
 from django.core import serializers
@@ -81,24 +81,37 @@ def grading(request):
 
 @login_required
 def review(request, test_id):
+  wtype = {
+    "1": "Noun",
+    "2": "Verb",
+    "3": "Adjective",
+    "4": "Adverb"
+  }
   test = Test.objects.get(pk=test_id)
   quests = Quest.objects.filter(test=test)
-  print(quests)
+  for quest in quests:
+    if quest.result in wtype.keys():
+      quest.result = wtype[quest.result]
+    if quest.answer in wtype.keys():
+      quest.answer = wtype[quest.answer]
   context = {
     "test": test,
     "quests": quests,
-    "wtype": {
-      "1": "Noun",
-      "2": "Verb",
-      "3": "Adjective",
-      "4": "Adverb"
-    }
+    
   }
   return render(request, "review.html", context)
 
 @login_required
 def view_history(request):
   tests = Test.objects.filter(user=request.user)
+  context = {
+    "tests": tests,
+  }
+  return render(request, "history.html", context)
+
+@user_passes_test(lambda u: u.is_superuser)
+def view_history_admin(request):
+  tests = Test.objects.all()
   context = {
     "tests": tests,
   }

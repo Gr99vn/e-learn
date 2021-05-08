@@ -10,11 +10,12 @@
 {% endblock %}
 
 {% block content %}
-  <ul>
+  <h3>History</h3>
+  <ol>
     {% for test in tests %}
-    <li><a href="{% url 'review' test.pk %}">Test {{ test.pk }} </a></li>
+    <li><a href="{% url 'review' test.pk %}"> {{ test.user }} test at {{ test.test_time }}</a></li>
     {% endfor %}
-  </ul>
+  </ol>
 {% endblock %}
 
 {% block js %}

@@ -7,6 +7,7 @@ urlpatterns = [
   path("grading/", views.grading, name="grading"),
   path("review/<int:test_id>", views.review, name="review"),
   path("history/", views.view_history, name="history"),
+  path("admin_history/", views.view_history_admin, name="admin_history"),
   path("register/", views.register, name="register"),
   path("random_test/", views.random_test, name="random_test"),
 ]

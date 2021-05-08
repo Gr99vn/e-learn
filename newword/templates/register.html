@@ -30,5 +30,6 @@
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Register">
+    <a href="{% url 'login' %}">Login</a>
   </form>
 {% endblock %}

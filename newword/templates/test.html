@@ -10,16 +10,16 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Test time: {{ test.test_time }} | {{ test.lesson|default:"Random" }} </h1>
+  <h3>Test time: {{ test.test_time }} | {{ test.lesson|default:"Random" }} </h3>
   <form method="POST">
     {% csrf_token %}
   {% for quest in questions %}
-  <div class="question">
+  <div class="question mb-4">
     <p class="quest-content">
       {{ forloop.counter }}. {{ quest.question }}
     </p>
     {% if quest.qtype == 1 or quest.qtype == 3 %}
-    <input type="text" name="ans[]">
+    <input type="text" name="ans[]" value="">
     {% else %}
     <fieldset id="group{{ forloop.counter }}">
       <input type="radio" id="noun" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="1">
@@ -35,7 +35,7 @@
     {% endif %}
   </div>
   {% endfor %}
-  <input type="submit" value="Submit">
+  <input type="submit" value="Submit" class="btn btn-primary">
   </form> 
 {% endblock %}
 

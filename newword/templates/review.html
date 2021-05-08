@@ -9,24 +9,37 @@
 {% block css %}
   <style>
     .correct-1 {
-      color: green;
+      border-color: green;
     }
     .correct-0 {
-      color: red;
+      border-color: red;
     }
   </style>
 {% endblock %}
 
 {% block content %}
-<h1> Review {{ test.lesson }} | Test time: {{ test.test_time }} </h1>
-{% for quest in quests %}
-<div class="question">
-  <p class="quest-content correct-{{ quest.correct }}">
-    {{ forloop.counter }}. {{ quest.question }}
-  </p>
-  Answer: {{ quest.answer }} || Correct answer: {{ quest.result }}
-</div>
-{% endfor %}
+<h3> Review {{ test.lesson }} | Test time: {{ test.test_time }} </h3>
+<h4>Test score: {{ test.score }}/{{ test.num_of_quest }} </h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Question</th>
+      <th scope="col">Your answer</th>
+      <th scope="col">Correct answer</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for quest in quests %}
+    <tr class="correct-{{ quest.correct }}">
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{ quest.question }}</td>
+      <td>{{ quest.answer }}</td>
+      <td>{{ quest.result }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
 
 {% block js %}

@@ -9,7 +9,7 @@ class Lesson(models.Model):
 
 class Test(models.Model):
   test_time = models.DateTimeField(auto_now_add=True)
-  score = models.FloatField(null=True)
+  score = models.IntegerField(null=True)
   user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="answers")
   lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, blank=True, null=True)
   num_of_quest = models.IntegerField(blank=True, null=True)
