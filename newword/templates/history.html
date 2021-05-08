@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+  History
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+  <ul>
+    {% for test in tests %}
+    <li><a href="{% url 'review' test.pk %}">Test {{ test.pk }} </a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

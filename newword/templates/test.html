@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+  Test
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+  <h1>Test time: {{ test.test_time }} | {{ test.lesson|default:"Random" }} </h1>
+  <form method="POST">
+    {% csrf_token %}
+  {% for quest in questions %}
+  <div class="question">
+    <p class="quest-content">
+      {{ forloop.counter }}. {{ quest.question }}
+    </p>
+    {% if quest.qtype == 1 or quest.qtype == 3 %}
+    <input type="text" name="ans[]">
+    {% else %}
+    <fieldset id="group{{ forloop.counter }}">
+      <input type="radio" id="noun" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="1">
+      <label for="noun">Noun</label><br>
+      <input type="radio" id="verb" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="2">
+      <label for="verb">Verb</label><br>
+      <input type="radio" id="adjective" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="3">
+      <label for="adjective">Adjective</label><br>
+      <input type="radio" id="adverb" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="4">
+      <label for="adverb">Adverb</label><br>
+      <input type="hidden" id="val-radio{{ forloop.counter }}" value="" name="ans[]">
+    </fieldset>
+    {% endif %}
+  </div>
+  {% endfor %}
+  <input type="submit" value="Submit">
+  </form> 
+{% endblock %}
+
+{% block js %}
+<script text="javascript">
+  $(".type-radio").each(function() {
+    $(this).click(function() {
+      let name = $(this).data("radio");
+      let val = $(this).val();
+      console.log(val);
+      $("#val-"+name).val(val);
+      console.log("#val-"+name);
+    })
+  });
+
+  $("form").submit(function(e) {
+    e.preventDefault();
+    let serializedData = $(this).serialize();
+    $.ajax({
+      type: "POST",
+      url: "{% url 'grading' %}",
+      data: serializedData,
+      success: function (response) {
+        var test = JSON.parse(response["test"]);
+        console.log(test);
+        var fields = test[0]["fields"];
+        var pk = test[0]["pk"];
+        alert(`Test Result: ${ fields["score"] }/${ fields["num_of_quest"] }`);
+        location.href = `/review/${pk}` ;
+      },
+      error: function (response) {
+        console.log("0");
+      }
+    });
+  });
+</script>
+{% endblock %}

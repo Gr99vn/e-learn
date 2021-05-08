@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+  Review
+{% endblock %}
+
+{% block css %}
+  <style>
+    .correct-1 {
+      color: green;
+    }
+    .correct-0 {
+      color: red;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<h1> Review {{ test.lesson }} | Test time: {{ test.test_time }} </h1>
+{% for quest in quests %}
+<div class="question">
+  <p class="quest-content correct-{{ quest.correct }}">
+    {{ forloop.counter }}. {{ quest.question }}
+  </p>
+  Answer: {{ quest.answer }} || Correct answer: {{ quest.result }}
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}
