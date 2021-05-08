@@ -25,7 +25,7 @@ def lesson_test(request, lesson_number):
   
   test = Test()
   test.user = request.user
-  test.lesson = Lesson.objects.filter(number=lesson_number)
+  test.lesson = Lesson.objects.filter(number=lesson_number).first()
   test.num_of_quest = len(newWords)
   test.save()
   
