@@ -20,12 +20,12 @@ def home(request):
   return render(request, "home.html", context)
 
 @login_required
-def lesson_test(request, lesson_id):
-  newWords = list(NewWord.objects.filter(lesson=lesson_id))
+def lesson_test(request, lesson_number):
+  newWords = list(NewWord.objects.filter(lesson__number=lesson_number))
   
   test = Test()
   test.user = request.user
-  test.lesson = Lesson.objects.get(pk=lesson_id)
+  test.lesson = Lesson.objects.filter(number=lesson_number)
   test.num_of_quest = len(newWords)
   test.save()
   
