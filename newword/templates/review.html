@@ -18,8 +18,9 @@
 {% endblock %}
 
 {% block content %}
-<h3> Review {{ test.lesson }} | Test time: {{ test.test_time }} </h3>
-<h4>Test score: {{ test.score }}/{{ test.num_of_quest }} </h4>
+<h3 class="d-inline"> Review {{ test.lesson }} </h3>|&nbsp;{{ test.test_time }} 
+<p>Test score: {{ test.score }}/{{ test.num_of_quest }} </p>
+<br>
 <table class="table table-striped">
   <thead>
     <tr>

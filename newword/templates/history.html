@@ -11,6 +11,7 @@
 
 {% block content %}
   <h3>History</h3>
+  <hr>
   <ol>
     {% for test in tests %}
     <li><a href="{% url 'review' test.pk %}"> {{ test.user }} test at {{ test.test_time }}</a></li>

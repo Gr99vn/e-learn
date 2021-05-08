@@ -21,7 +21,8 @@ class NewWord(models.Model):
     (1, "Noun"),
     (2, "Verb"),
     (3, "Adjective"),
-    (4, "Adverb")
+    (4, "Adverb"),
+    (5, "Phrasal verb/Preposition")
   ]
   word = models.CharField(max_length=100)
   wtype = models.IntegerField(choices=word_type, default=1)
