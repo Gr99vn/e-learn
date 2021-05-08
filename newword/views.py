@@ -136,10 +136,10 @@ def register(request):
       return redirect(reverse("register"))
 
 @login_required
-def random_test(request):
+def random_test(request, quest_num):
   test = Test()
   test.user = request.user
-  test.num_of_quest = 6
+  test.num_of_quest = quest_num
   test.save()
   
   allWords = list(NewWord.objects.all())
