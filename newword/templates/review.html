@@ -9,10 +9,10 @@
 {% block css %}
   <style>
     .correct-1 {
-      border-color: green;
+      color: green !important;
     }
     .correct-0 {
-      border-color: red;
+      color: red !important;
     }
   </style>
 {% endblock %}
@@ -33,12 +33,12 @@
   </thead>
   <tbody>
     {% for quest in quests %}
-    <tr class="correct-{{ quest.correct }}">
+    <tr>
       <th scope="row">{{ forloop.counter }}</th>
       <td>{{ quest.question }}</td>
       <td>{{ quest.answer }}</td>
       <td>{{ quest.result }}</td>
-      <td>{{ quest.get_correct_display }}</td>
+      <td  class="correct-{{ quest.correct }}">{{ quest.get_correct_display }}</td>
     </tr>
     {% endfor %}
   </tbody>

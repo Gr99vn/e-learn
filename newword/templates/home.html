@@ -29,6 +29,8 @@
       <ul>
         {% for lesson in lessons %}
         <li><a href="{% url 'lesson_test' lesson.number %}">Lesson {{ lesson.number }} ({{ lesson.words.all.count }} new words)</a></li>
+        {% empty %}
+        There are 0 lesson now, sorry about that!
         {% endfor %}
       </ul>
     </div>

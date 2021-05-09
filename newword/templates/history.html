@@ -15,6 +15,9 @@
   <ol>
     {% for test in tests %}
     <li><a href="{% url 'review' test.pk %}"> {{ test.user }} test at {{ test.test_time }}</a></li>
+    {% empty %}
+    There are no tests here. 
+    <a href="{% url 'home' %}">Lets do some test!</a>
     {% endfor %}
   </ol>
 {% endblock %}
