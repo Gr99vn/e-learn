@@ -63,10 +63,8 @@ def lesson_test(request, lesson_number):
 def grading(request):
   if request.is_ajax and request.method == "POST":
     answer = request.POST.getlist("ans[]")
-    print(answer)
     questpks = request.session["questpks"]
     for ind, pk in enumerate(questpks):
-      print(ind)
       quest = Quest.objects.get(pk=pk)
       quest.answer = answer[ind]
       quest.correct = 0
@@ -144,7 +142,6 @@ def random_test(request, quest_num):
   
   allWords = list(NewWord.objects.all())
   wordCount = len(allWords)
-  print(wordCount)
   newWordInds, newWords, questions = [], [], []
   index = 0
   while index < test.num_of_quest:
@@ -152,7 +149,6 @@ def random_test(request, quest_num):
     if r not in newWordInds:
       newWordInds.append(r)
       index += 1
-  print(newWordInds)
   for pk in newWordInds:
     newWords.append(allWords[pk])
   for newWord in newWords:

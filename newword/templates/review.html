@@ -28,6 +28,7 @@
       <th scope="col">Question</th>
       <th scope="col">Your answer</th>
       <th scope="col">Correct answer</th>
+      <th scope="col">Result</th>
     </tr>
   </thead>
   <tbody>
@@ -37,6 +38,7 @@
       <td>{{ quest.question }}</td>
       <td>{{ quest.answer }}</td>
       <td>{{ quest.result }}</td>
+      <td>{{ quest.get_correct_display }}</td>
     </tr>
     {% endfor %}
   </tbody>

@@ -37,11 +37,15 @@ class Quest(models.Model):
     (2, "Type choose"),
     (3, "Word meaning")
   ]
+  result_type = [
+    (0, "False"),
+    (1, "True")
+  ]
   question = models.CharField(max_length=500)
   result = models.CharField(max_length=150)
   qtype = models.IntegerField(choices=quest_type, default=1)
   answer = models.CharField(max_length=150, blank=True, null=True)
-  correct = models.IntegerField(blank=True, null=True)
+  correct = models.IntegerField(choices=result_type, blank=True, null=True)
   test = models.ForeignKey(Test, on_delete=models.CASCADE, related_name="user_answers")
   def __str__(self):
     return f"Quest {self.question}"
