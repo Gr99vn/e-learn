@@ -23,14 +23,14 @@
     <input type="text" name="ans[]" value="" autocomplete="off" autocorrect="off" >
     {% else %}
     <fieldset id="group{{ forloop.counter }}">
-      <input type="radio" id="noun" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="1">
-      <label for="noun">Noun</label><br>
-      <input type="radio" id="verb" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="2">
-      <label for="verb">Verb</label><br>
-      <input type="radio" id="adjective" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="3">
-      <label for="adjective">Adjective</label><br>
-      <input type="radio" id="adverb" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="4">
-      <label for="adverb">Adverb</label><br>
+      <input type="radio" id="noun{{ forloop.counter }}" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="1">
+      <label for="noun{{ forloop.counter }}">Noun</label><br>
+      <input type="radio" id="verb{{ forloop.counter }}" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="2">
+      <label for="verb{{ forloop.counter }}">Verb</label><br>
+      <input type="radio" id="adjective{{ forloop.counter }}" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="3">
+      <label for="adjective{{ forloop.counter }}">Adjective</label><br>
+      <input type="radio" id="adverb{{ forloop.counter }}" class="type-radio" data-radio="radio{{ forloop.counter }}" name="ans{{ forloop.counter }}" value="4">
+      <label for="adverb{{ forloop.counter }}">Adverb</label><br>
       <input type="hidden" id="val-radio{{ forloop.counter }}" value="" name="ans[]">
     </fieldset>
     {% endif %}

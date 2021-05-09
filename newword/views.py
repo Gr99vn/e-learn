@@ -182,4 +182,3 @@ def random_test(request, quest_num):
     "questions": questions,
   }
   return render(request, "test.html", context)
-  
