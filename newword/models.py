@@ -27,7 +27,7 @@ class NewWord(models.Model):
   word = models.CharField(max_length=100)
   wtype = models.IntegerField(choices=word_type, default=1)
   meaning = models.CharField(max_length=100)
-  lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, blank=True, null=True)
+  lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, blank=True, null=True, related_name="words")
   def __str__(self):
     return f"{self.word} in {self.lesson}" 
 

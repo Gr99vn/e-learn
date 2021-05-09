@@ -159,14 +159,16 @@ def random_test(request, quest_num):
     quest = Quest()
     quest_str, result = "", ""
     r = random.randint(1,3)
+    if newWord.wtype == 5:
+      r = 3
     if r == 1:
-      quest_str = f"{newWord.meaning}({newWord.get_wtype_display()}) in English is ..."
+      quest_str = f"{newWord.meaning}({newWord.get_wtype_display()}) in English."
       result = newWord.word
     elif r == 2:
-      quest_str = f"{newWord.word}({newWord.meaning}) word type is ..."
+      quest_str = f"{newWord.word}({newWord.meaning}) word type."
       result = str(newWord.wtype)
     elif r == 3:
-      quest_str = f"{newWord.word}({newWord.get_wtype_display()}) meaning is ..."
+      quest_str = f"{newWord.word}({newWord.get_wtype_display()}) meaning."
       result = newWord.meaning
     quest.question = quest_str
     quest.qtype = r
@@ -180,3 +182,4 @@ def random_test(request, quest_num):
     "questions": questions,
   }
   return render(request, "test.html", context)
+  
