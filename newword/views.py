@@ -75,7 +75,6 @@ def grading(request):
     test.score = Quest.objects.filter(test=test).filter(correct=1).count()
     test.save()
     ser_instance = serializers.serialize('json', [ test, ])
-    # send to client side.
     return JsonResponse({"test": ser_instance}, status=200)
   return JsonResponse({"error": ""}, status=400)
 
@@ -158,13 +157,13 @@ def random_test(request, quest_num):
     if newWord.wtype == 5:
       r = 3
     if r == 1:
-      quest_str = f"{newWord.meaning}({newWord.get_wtype_display()}) in English."
+      quest_str = f"{newWord.meaning.capitalize()}({newWord.get_wtype_display().lower()}) in English."
       result = newWord.word
     elif r == 2:
-      quest_str = f"{newWord.word}({newWord.meaning}) word type."
+      quest_str = f"{newWord.word.capitalize()}({newWord.meaning.lower()}) word type."
       result = str(newWord.wtype)
     elif r == 3:
-      quest_str = f"{newWord.word}({newWord.get_wtype_display()}) meaning."
+      quest_str = f"{newWord.word.capitalize()}({newWord.get_wtype_display().lower()}) meaning."
       result = newWord.meaning
     quest.question = quest_str
     quest.qtype = r
